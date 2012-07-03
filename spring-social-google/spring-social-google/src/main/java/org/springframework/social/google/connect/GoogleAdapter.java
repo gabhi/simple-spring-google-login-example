@@ -31,7 +31,7 @@ public class GoogleAdapter implements ApiAdapter<Google> {
 	public boolean test(Google google) {
 		return true;
 	}
-
+             //testing git
 	public void setConnectionValues(Google google, ConnectionValues values) {
 		LegacyGoogleProfile profile = google.userOperations().getUserProfile();
 		values.setProviderUserId(profile.getId());
