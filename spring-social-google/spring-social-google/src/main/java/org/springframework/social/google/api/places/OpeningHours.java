@@ -7,7 +7,7 @@ package org.springframework.social.google.api.places;
  * Time: 12:33 AM
  * To change this template use File | Settings | File Templates.
  */
-public class Opening_hours {
+public class OpeningHours {
     String open_now;
 
     public String getOpen_now() {
