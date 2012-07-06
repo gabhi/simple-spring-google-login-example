@@ -17,16 +17,19 @@ public class Place extends ApiEntity {
     private String rating;
     private String reference;
 
+
      String[] types;
     Geometry geometry;
                  String vicinity;
-    Opening_hours opening_hours ;
+    OpeningHours opening_hours ;
 
-    public Opening_hours getOpening_hours() {
+
+
+    public OpeningHours getOpening_hours() {
         return opening_hours;
     }
 
-    public void setOpening_hours(Opening_hours opening_hours) {
+    public void setOpening_hours(OpeningHours opening_hours) {
         this.opening_hours = opening_hours;
     }
 

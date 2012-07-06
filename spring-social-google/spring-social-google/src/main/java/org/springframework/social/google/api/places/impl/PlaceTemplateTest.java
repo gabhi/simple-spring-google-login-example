@@ -49,7 +49,7 @@ public class PlaceTemplateTest   {
         try {
             URL url = new URL("https://maps.googleapis.com/maps/api/place/search" +
                     "/json?location=-33.8670522,151.1957362&radius=500&types=food" +
-                    "&name=harbour&sensor=false&key=AIzaSyB0f-PalseZwVFQJnkZjvGMumaOOGE6LoI");
+                    "&name=&sensor=false&key=AIzaSyB0f-PalseZwVFQJnkZjvGMumaOOGE6LoI");
             InputStream response = url.openStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(response));
 
