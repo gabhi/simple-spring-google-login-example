@@ -15,20 +15,6 @@
  */
 package org.springframework.social.google.api.impl;
 
-import static java.util.Collections.singletonList;
-import static org.codehaus.jackson.map.DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES;
-import static org.codehaus.jackson.map.SerializationConfig.Feature.WRITE_DATES_AS_TIMESTAMPS;
-import static org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion.NON_NULL;
-import static org.springframework.http.MediaType.APPLICATION_ATOM_XML;
-import static org.springframework.util.ReflectionUtils.findMethod;
-import static org.springframework.util.ReflectionUtils.invokeMethod;
-
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.xml.transform.Source;
-
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.http.converter.ByteArrayHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -37,6 +23,8 @@ import org.springframework.http.converter.xml.SourceHttpMessageConverter;
 import org.springframework.social.google.api.Google;
 import org.springframework.social.google.api.legacyprofile.LegacyProfileOperations;
 import org.springframework.social.google.api.legacyprofile.impl.UserTemplate;
+import org.springframework.social.google.api.places.PlacesOperations;
+import org.springframework.social.google.api.places.impl.PlaceTemplate;
 import org.springframework.social.google.api.plus.activity.ActivityOperations;
 import org.springframework.social.google.api.plus.activity.impl.ActivityTemplate;
 import org.springframework.social.google.api.plus.comment.CommentOperations;
@@ -47,6 +35,19 @@ import org.springframework.social.google.api.tasks.TaskOperations;
 import org.springframework.social.google.api.tasks.impl.TaskTemplate;
 import org.springframework.social.oauth2.AbstractOAuth2ApiBinding;
 import org.springframework.social.oauth2.OAuth2Version;
+
+import javax.xml.transform.Source;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.util.Collections.singletonList;
+import static org.codehaus.jackson.map.DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES;
+import static org.codehaus.jackson.map.SerializationConfig.Feature.WRITE_DATES_AS_TIMESTAMPS;
+import static org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion.NON_NULL;
+import static org.springframework.http.MediaType.APPLICATION_ATOM_XML;
+import static org.springframework.util.ReflectionUtils.findMethod;
+import static org.springframework.util.ReflectionUtils.invokeMethod;
 
 /**
  * <p>
@@ -69,8 +70,10 @@ public class GoogleTemplate extends AbstractOAuth2ApiBinding implements Google {
 	private ActivityOperations activityOperations;
 	private CommentOperations commentOperations;
 	private TaskOperations taskOperations;
-	
-	/**
+    private PlacesOperations placesOperations;
+
+
+    /**
 	 * Creates a new instance of GoogleTemplate.
 	 * This constructor creates a new GoogleTemplate able to perform unauthenticated operations against Google+.
 	 */
@@ -95,7 +98,9 @@ public class GoogleTemplate extends AbstractOAuth2ApiBinding implements Google {
 		activityOperations = new ActivityTemplate(getRestTemplate(), isAuthorized());
 		commentOperations = new CommentTemplate(getRestTemplate(), isAuthorized());
 		taskOperations = new TaskTemplate(getRestTemplate(), isAuthorized());
-	}
+        placesOperations = new PlaceTemplate(getRestTemplate(), isAuthorized());
+
+    }
 	
 	@Override
 	protected List<HttpMessageConverter<?>> getMessageConverters() {
@@ -127,6 +132,11 @@ public class GoogleTemplate extends AbstractOAuth2ApiBinding implements Google {
 		return userOperations;
 	}
 
+    @Override
+    public PlacesOperations placesOperations() {
+        return placesOperations;
+    }
+
 	@Override
 	public PersonOperations personOperations() {
 		return profileOperations;
@@ -153,4 +163,6 @@ public class GoogleTemplate extends AbstractOAuth2ApiBinding implements Google {
 		invokeMethod(setHeaders, client, 
 			"Authorization", getOAuth2Version().getAuthorizationHeaderValue(accessToken));
 	}
+
+
 }

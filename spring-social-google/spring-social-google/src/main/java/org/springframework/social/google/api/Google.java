@@ -18,6 +18,7 @@ package org.springframework.social.google.api;
 import org.springframework.social.ApiBinding;
 import org.springframework.social.google.api.impl.GoogleTemplate;
 import org.springframework.social.google.api.legacyprofile.LegacyProfileOperations;
+import org.springframework.social.google.api.places.PlacesOperations;
 import org.springframework.social.google.api.plus.activity.ActivityOperations;
 import org.springframework.social.google.api.plus.comment.CommentOperations;
 import org.springframework.social.google.api.plus.person.PersonOperations;
@@ -89,9 +90,11 @@ public interface Google extends ApiBinding {
 	 * @see <a href="http://code.google.com/p/gdata-java-client/">GData Java Client</a>
 	 * 
 	 * @param client
-	 *            subclass of externally instantiated {@link GoogleService} to
+	 *            subclass of externally instantiated   to
 	 *            which OAuth2 authentication will be applied
 	 *            http://code.google.com/p/gdata-java-client/
 	 */
 	void applyAuthentication(Object client);
+
+    PlacesOperations placesOperations();
 }

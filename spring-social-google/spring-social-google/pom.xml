@@ -4,7 +4,7 @@
 	<groupId>org.springframework.social</groupId>
 	<artifactId>spring-social-google</artifactId>
 	<name>Spring Social Google</name>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 
 	<properties>
 		<spring.social.version>1.0.2.RELEASE</spring.social.version>
@@ -65,7 +65,13 @@
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.9.5</version>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8.1</version>
+        </dependency>
+
+    </dependencies>
 	
 	<build>
 		<plugins>
