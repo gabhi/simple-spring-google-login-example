@@ -1,8 +1,9 @@
-Spring Social Google
-=====================
+This sample is designed to get you up and running quickly.
 
-spring-social-google - Library sources
-spring-social-google-quickstart - Example application
+To run, simply import the project into your IDE and deploy to a Servlet 2.5 or > container such as Tomcat 6 or 7.
+You can also deploy from the command line with:
+$ mvn tomcat:run
 
-Reference Manual: https://github.com/GabiAxel/spring-social-google/wiki/Spring-Social-Google-Reference-Manual
-Live Example: http://googleapis.cloudfoundry.com/
+Access the project at http://localhost:8080/spring-social-quickstart
+
+Discuss at forum.springsource.org and collaborate with the development team at jira.springframework.org/browse/SOCIAL.
